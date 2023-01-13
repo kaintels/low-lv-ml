@@ -20,7 +20,7 @@ class Net(nn.Module):
         self.layer2 = nn.Linear(5, 2)
     
     def forward(self, x):
-        x = self.layer1(x)
+        x = torch.sigmoid(self.layer1(x))
         x = self.layer2(x)
 
         return x

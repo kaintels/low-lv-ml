@@ -16,4 +16,4 @@ find_package( Eigen3 3.3 REQUIRED)
 # include_directories is needed for the compiler to know where looking for Eigen3 header files to be included 
 include_directories( ${EIGEN3_INCLUDE_DIR} )
 
-add_executable(main main.cpp layer.h)
+add_executable(main main.cpp layer.h activation.h)
