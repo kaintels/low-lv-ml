@@ -12,15 +12,28 @@ torch.backends.cudnn.benchmark = False
 np.random.seed(random_seed)
 random.seed(random_seed)
 
+class Net(nn.Module):
+    def __init__(self):
+        super(Net, self).__init__()
+    
+        self.layer1 = nn.Linear(10, 5)
+        self.layer2 = nn.Linear(5, 2)
+    
+    def forward(self, x):
+        x = self.layer1(x)
+        x = self.layer2(x)
 
-model = nn.Linear(10, 1)
+        return x
+
+model = Net()
+
+def get_param(model):
+    for name, param in model.named_parameters():
+        np.savetxt("build/"+str(name)+".txt", param.detach())
+
+        print(param.shape)
 
 
-a = dict(model.state_dict())
+get_param(model)
 
-aw = a["weight"].numpy()
-ab = a["bias"].numpy()
-
-# np.savetxt("aw.txt", aw)
-# np.savetxt("ab.txt", ab)
-print(model(torch.ones(10)))
+print(model(torch.ones(2, 10)))
