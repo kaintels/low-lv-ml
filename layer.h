@@ -27,8 +27,6 @@ Eigen::MatrixXd Linear(std::string layer, Eigen::MatrixXd input, int feature, in
     }
     
     auto dot_product = input.lazyProduct(weight.transpose());
-
-
     auto result = Eigen::MatrixXd(dot_product.rows(), dot_product.cols());
 
     for (int j = 0; j < dot_product.rows(); ++j){
