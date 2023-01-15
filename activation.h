@@ -25,3 +25,8 @@ Eigen::MatrixXd LeakyReLU(Eigen::MatrixXd input, float negative_slope){
     Eigen::MatrixXd result = input.array().cwiseMax(0) + negative_slope * input.array().cwiseMin(0);
     return result;
 }
+
+Eigen::MatrixXd ELU(Eigen::MatrixXd input, float alpha){
+    Eigen::MatrixXd result = input.array().cwiseMax(0) + alpha * (input.array().cwiseMin(0).exp() - 1);
+    return result;
+}
