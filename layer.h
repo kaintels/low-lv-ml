@@ -4,12 +4,25 @@
 #include <ostream>
 #include <string>
 
-Eigen::MatrixXd Linear(std::string layer, Eigen::MatrixXd input, int feature, int mini_batch){
+Eigen::MatrixXd Flatten(Eigen::MatrixXd input, std::string major="row"){
+
+    if (major == "row"){
+        auto result = input.reshaped<Eigen::RowMajor>().transpose();
+        return result;
+    }
+
+    else {
+        auto result = input.reshaped().transpose();
+        return result;
+    }
+}
+
+Eigen::MatrixXd Linear(std::string layer_name, Eigen::MatrixXd input, int feature, int mini_batch){
 
     float number;
 
-    std::ifstream awfile(layer + ".weight.txt");
-    std::ifstream abfile(layer + ".bias.txt");
+    std::ifstream awfile(layer_name + ".weight.txt");
+    std::ifstream abfile(layer_name + ".bias.txt");
 
     auto weight = Eigen::MatrixXd(mini_batch, feature);
     auto bias = Eigen::VectorXd(mini_batch);
@@ -35,3 +48,4 @@ Eigen::MatrixXd Linear(std::string layer, Eigen::MatrixXd input, int feature, in
 
     return result;
 }
+
