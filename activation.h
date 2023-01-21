@@ -17,3 +17,5 @@ Eigen::MatrixXd LeakyReLU(Eigen::MatrixXd input, float negative_slope);
 Eigen::MatrixXd ELU(Eigen::MatrixXd input, float alpha);
 
 Eigen::MatrixXd Softmax(Eigen::MatrixXd input);
+
+Eigen::MatrixXd LogSoftmax(Eigen::MatrixXd input);

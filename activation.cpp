@@ -31,3 +31,8 @@ Eigen::MatrixXd Softmax(Eigen::MatrixXd input){
     Eigen::MatrixXd result = input.array().exp().colwise() / input.array().exp().rowwise().sum().array();
     return result;
 }
+
+Eigen::MatrixXd LogSoftmax(Eigen::MatrixXd input){
+    Eigen::MatrixXd result = Softmax(input).array().log();
+    return result;
+}
